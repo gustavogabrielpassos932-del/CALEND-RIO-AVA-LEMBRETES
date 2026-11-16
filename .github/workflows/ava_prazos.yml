@@ -1,0 +1,25 @@
+name: Prazos AVA UniEVANGELICA
+
+on:
+  schedule:
+    # 07:00 BRT = 10:00 UTC | 19:00 BRT = 22:00 UTC
+    - cron: '0 10,22 * * *'
+  workflow_dispatch:
+
+jobs:
+  notificar-prazos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar codigo do repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Consultar AVA e enviar push para iPhone
+        env:
+          AVA_ICS_URL: ${{ secrets.AVA_ICS_URL }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python check_ava.py
