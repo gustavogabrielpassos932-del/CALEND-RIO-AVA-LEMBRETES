@@ -2,8 +2,8 @@ name: Prazos AVA UniEVANGELICA
 
 on:
   schedule:
-    # 07:12 BRT = 10:12 UTC | 19:12 BRT = 22:12 UTC
-    - cron: '12 10,22 * * *'
+    # 07:33 BRT = 10:33 UTC | 19:33 BRT = 22:33 UTC
+    - cron: '33 10,22 * * *'
   workflow_dispatch:
 
 jobs:
